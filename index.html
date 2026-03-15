@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-blue-500 flex flex-row justify-center items-center h-screen w-screen">
+    <div class="z-50 buttons fixed top-8 left-8 flex flex-row justify-center items-center gap-4">
+    <button class="mybtn1 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">1</button>
+    <button class="mybtn2 bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded">2</button>
+    <button class="mybtn3 bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">3</button>
+    </div>
+
+    <div class="relative leftside text-center h-full w-9/12 relative flex flex-col justify-center items-center">
+        <img id="photo" src="imgs/photo1.jpg" alt="Photo" class="absolute top-0 left-0 h-full w-full cursor-pointer">
+        <button class="top-4 right-4 absolute genislet z-50 py-2 px-4 bg-gray-300 text-gray-800 rounded">Genişlet / Daralt</button>
+    </div>
+
+    <div class="colorside h-full w-3/12 text-sm text-gray-600 flex flex-col justify-center items-center gap-4">
+  <h1 id="text1" class="text-white w-8/12 text-center text-4xl font-bold mb-4">Yeni içerik 1: Hayalindeki tasarıma bir adım daha yakla ve ilhamı keşfet.</h1>
+      <p id="text2" class="text-white w-8/12 text-center text-lg">Id 1 için ikinci metin: Sade, modern ve dikkat çekici bir deneyim için doğru yerdesin.</p>
+    </div>
+</body>
+</html>
+
+<script>
+
+    let records = [
+        { id: 1, 
+            text: "Yeni içerik 1: Hayalindeki tasarıma bir adım daha yakla ve ilhamı keşfet.",
+            text2: "Id 1 için ikinci metin: Sade, modern ve dikkat çekici bir deneyim için doğru yerdesin.",
+             photourl: "imgs/photo1.jpg" },
+        { id: 2, 
+            text: "Yeni içerik 2: Kampanyalar ve duyurular burada öne çıkar.",
+            text2: "Id 2 için ikinci metin: Renk değişimiyle birlikte bu açıklama da güncellenir.",
+             photourl: "imgs/photo2.jpg" },
+        { id: 3, 
+            text: "Yeni içerik 3: Ürün detayları ve önemli bilgiler bu alanda gösterilir.",
+            text2: "Id 3 için ikinci metin: Butona tıklanınca görsel ve yazı birlikte değişir.",
+             photourl: "imgs/photo3.jpg" }
+    ];
+
+    $(".mybtn1").click(function() {
+        $(".colorside").addClass("bg-blue-500").removeClass("bg-gray-300 bg-green-500 bg-red-500");
+        $("#photo").attr("src", records[0].photourl);
+        $("#text1").text(records[0].text);
+        $("#text2").text(records[0].text2);
+
+    });
+
+    $(".mybtn2").click(function() {
+        $(".colorside").addClass("bg-green-500").removeClass("bg-gray-300 bg-blue-500 bg-red-500");
+        $("#photo").attr("src", records[1].photourl);
+        $("#text1").text(records[1].text);
+        $("#text2").text(records[1].text2);
+    });
+
+    $(".mybtn3").click(function() {
+        $(".colorside").addClass("bg-red-500").removeClass("bg-gray-300 bg-blue-500 bg-green-500");
+        $("#photo").attr("src", records[2].photourl);
+        $("#text1").text(records[2].text);
+        $("#text2").text(records[2].text2);
+    });
+
+    $(".genislet").click(function() {
+        $(".leftside").toggleClass("w-full w-9/12");
+        $(".colorside").toggleClass("hidden");
+    });
+</script>
